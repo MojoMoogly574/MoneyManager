@@ -41,7 +41,7 @@ struct SettingsView: View {
         NavigationStack{
             List {
                 Section("User Name") {
-                    TextField("iJustine", text: $userName)
+                    TextField("UserName", text: $userName)
                 }
                 Section("App Lock") {
                     Toggle("Enable App Lock", isOn: $isAppLockEnabled)
@@ -49,7 +49,7 @@ struct SettingsView: View {
                         Toggle("Lock When App Goes Background", isOn: $lockWhenAppGoesBackground)
                     }
                 }
-                Section("App Tint") {
+                Section("Accent Color") {
                     ScrollView(.horizontal) {
                         HStack(spacing: 15) {
                             ForEach(tints) { tint in
@@ -116,6 +116,7 @@ struct SettingsView: View {
             }
             .navigationTitle("App Settings")
             .navigationBarTitleDisplayMode(.inline)
+        }
             .padding(.top, 5)
             /// For Exporting Expneses as JSON File
             .sheet(isPresented: $presentShareSheet) {
@@ -161,8 +162,8 @@ struct SettingsView: View {
                     removeAllPendingNotifications()
                 }
             }
-        }
-    }
+        } 
+    
     /// Importing JSON File and Adding to SwiftData
     func importJSON(_ url: URL) {
         isLoading = true

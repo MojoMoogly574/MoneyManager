@@ -17,33 +17,24 @@ struct Drawer: View {
     var body: some View {
         
         VStack{
-            
             HStack{
-                
                 Image("NullProfile")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 65, height: 65)
                     .clipShape(Circle())
-                
                 Spacer()
-                
                 // Close Button..
-                
                 if menuData.showDrawer{
                     DrawerCloseButton(animation: animation)
-                        
                 }
             }
             .padding()
-            
             VStack(alignment: .leading, spacing: 10, content: {
-                
                 Text("Hello")
-                    .font(.title2)
-                
+                    .font(.title3)
                 Text("Joseph DeWeese")
-                    .font(.title)
+                    .font(.title2)
                     .fontWeight(.heavy)
             })
             .foregroundColor(.white)
@@ -54,17 +45,17 @@ struct Drawer: View {
             // Menu Buttons....
             
             VStack(spacing: 22){
-                
-                MenuButton(name: "Profile", image: "person.fill", selectedMenu: $menuData.selectedMenu,animation: animation)
-                
                 MenuButton(name: "Dashboard", image: "chart.bar.doc.horizontal.fill", selectedMenu: $menuData.selectedMenu,animation: animation)
                 
                 MenuButton(name: "Transactions", image: "dollarsign", selectedMenu: $menuData.selectedMenu,animation: animation)
                 
                 MenuButton(name: "Search", image: "magnifyingglass", selectedMenu: $menuData.selectedMenu,animation: animation)
+                
+                MenuButton(name: "Budgets", image: "list.bullet.rectangle.fill", selectedMenu: $menuData.selectedMenu,animation: animation)
                     
                 MenuButton(name: "Settings", image: "gear", selectedMenu: $menuData.selectedMenu,animation: animation)
             }
+            .navigationBarBackButtonHidden(true)//important
             .padding(.leading)
             .frame(width: 250, alignment: .leading)
             .padding(.top,30)
@@ -90,7 +81,7 @@ struct Drawer: View {
 
 struct Drawer_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView().navigationBarBackButtonHidden(true)
     }
 }
 
@@ -123,10 +114,12 @@ struct DrawerCloseButton: View {
                 VStack(spacing: 5){
                     
                     Capsule()
-                        .fill(menuData.showDrawer ? Color.white : Color.white)                        .frame(width: 35, height: 3)
+                        .fill(menuData.showDrawer ? Color.white : Color.white)                        
+                        .frame(width: 35, height: 3)
                     
                     Capsule()
-                        .fill(menuData.showDrawer ? Color.white : Color.white)                        .frame(width: 35, height: 3)
+                        .fill(menuData.showDrawer ? Color.white : Color.white)                       
+                        .frame(width: 35, height: 3)
                     // Moving This View TO Hide...
                         .offset(y: menuData.showDrawer ? -8 : 0)
                 }

@@ -10,7 +10,6 @@ import SwiftUI
 struct HomeView: View {
     
     // Hiding tab Bar...
-    
     init() {
         UITabBar.appearance().isHidden = true
     }
@@ -33,9 +32,6 @@ struct HomeView: View {
                 
                 TransactionsView()
                     .tag("Transactions")
-
-                ProfileView()
-                    .tag("Profile")
                 
                 DashboardView()
                     .tag("Dashboard")
@@ -43,11 +39,15 @@ struct HomeView: View {
                 SearchView()
                     .tag("Search")
                 
+                BudgetsView()
+                    .tag("Budgets")
+                
                 SettingsView()
                     .tag("Settings")
             }
             .frame(width: UIScreen.main.bounds.width)
         }
+        .navigationBarBackButtonHidden(true)
         // Max Frame...
         .frame(width: UIScreen.main.bounds.width)
         // Moving View....
@@ -70,7 +70,7 @@ struct HomeView: View {
             },
             alignment: .topLeading
         )
-        
+        .navigationBarBackButtonHidden(true)
         // Setting As Environment Object....
         // For Avoiding Re-Declarations...
         .environmentObject(menuData)
