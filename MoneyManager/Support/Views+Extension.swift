@@ -53,6 +53,11 @@ extension View {
             return partialResult + transaction.amount
         }
     }
+    func investmentTotal(_ transactions: [Transaction], category: Category) -> Double {
+        return transactions.lazy.filter({ $0.category == category.rawValue }).lazy.reduce(Double.zero) { partialResult, transaction in
+            return partialResult + transaction.amount
+        }
+    }
     func total(_ transactions: [Transaction], category: Category) -> Double {
         return transactions.lazy.filter({ $0.category == category.rawValue }).lazy.reduce(Double.zero) { partialResult, transaction in
             return partialResult + transaction.amount

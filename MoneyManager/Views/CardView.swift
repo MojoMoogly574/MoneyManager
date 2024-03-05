@@ -68,7 +68,8 @@ struct CardView: View {
                 .padding([.horizontal, .bottom], 25)
                 .padding(.top, 15)
             }
-            .background(.colorTitanium.gradient, in: .rect)
+            .background(.themeBG.gradient)
+         
         }
         .clipShape(RoundedRectangle(cornerRadius: 10))
     }

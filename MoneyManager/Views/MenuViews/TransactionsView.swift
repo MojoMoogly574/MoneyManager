@@ -46,10 +46,9 @@ struct TransactionsView: View {
                                         .padding(8)
                                 }
                                 .hSpacing(.leading)
-                                
                                 .background {///date range button rectangle
                                     RoundedRectangle(cornerRadius: 5, style: .continuous)
-                                        .fill(.colorTitanium)
+                                        .fill(.colorTitanium.gradient)
                                         .shadow(color: .primary, radius: 4, x: 2, y: 2)
                                 }
                                 .padding(.horizontal)
@@ -62,6 +61,7 @@ struct TransactionsView: View {
                                         savings: total(transactions, category: .savings),
                                         investments: total(transactions, category: .investment)
                                     )
+                                }
                                     ///  CATEGORY SEGMENTED PICKER
                                     Picker("", selection: $selectedCategory) {
                                         ForEach(Category.allCases, id: \.rawValue) { category in
@@ -69,11 +69,10 @@ struct TransactionsView: View {
                                                 .tag(category)
                                         }
                                     }
+                                    .pickerStyle(.segmented)
                                     .padding(.horizontal, 5)
-                                }
-                                .pickerStyle(.segmented)
                                 Divider()
-                                
+                                    .background(.primary)
                                 ///FILTER TRANSACTION VIEW
                                 FilterTransactionsView(startDate: startDate, endDate: endDate, category: selectedCategory) { transactions in
                                     ForEach(transactions) { transaction in
@@ -89,21 +88,18 @@ struct TransactionsView: View {
                                 //MARK:  HEADER VIEW
                                 HStack{
                                     VStack(alignment: .trailing, content: {
-                                        Text("       Welcome!")
+                                        Text(" Welcome!")
                                             .font(.title.bold())
-                                        
                                         if !userName.isEmpty {
                                             Text(userName)
                                                 .font(.callout)
-                                                .foregroundStyle(.colorGrey)
+                                                .foregroundStyle(.secondary)
                                         }
                                     })  .hSpacing(.center)
                                         .visualEffect { content, geometryProxy in
                                             content
                                                 .scaleEffect(headerScale(size, proxy: geometryProxy), anchor: .center)
                                         }
-                                    Spacer()
-                                   
                                 }
                                 .padding(.horizontal, 2)
                                 .padding(.bottom, userName.isEmpty ? 10 : 5)
@@ -126,8 +122,9 @@ struct TransactionsView: View {
                     .blur(radius:showFilterView ? 8 : 0)
                     .disabled(showFilterView)
                     .navigationDestination(item: $selectedTransaction) { transaction in
-                        EditTransactionView()
+                        EditTransactionView(editTransaction: transaction)///pass transaction to editview
                     }
+                    //ADD TRANSACTION BUTTON 
                     VStack{
                         Spacer()
                         Button {

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    
+    @Environment(\.modelContext) private var context
     // Hiding tab Bar...
     init() {
         UITabBar.appearance().isHidden = true
@@ -45,6 +45,7 @@ struct HomeView: View {
                 SettingsView()
                     .tag("Settings")
             }
+            .navigationBarBackButtonHidden(true)
             .frame(width: UIScreen.main.bounds.width)
         }
         .navigationBarBackButtonHidden(true)

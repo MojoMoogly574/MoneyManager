@@ -108,7 +108,7 @@ struct AddTransactionView: View {
                     .tint(.gray)
                 }
             })
-        }.padding(.horizontal, 2)
+        }
             .onAppear(perform: {
                 if let editTransaction {
                     /// Load All Existing Data from the Transaction
@@ -261,5 +261,5 @@ struct AddTransactionView: View {
     }
 }
 #Preview {
-   HomeView()
+    HomeView()
 }

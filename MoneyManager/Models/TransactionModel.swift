@@ -117,4 +117,3 @@ enum Budget: Int, Codable, Identifiable, CaseIterable {
         }
     }
 
-
