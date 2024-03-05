@@ -35,8 +35,10 @@
 		124750102B965282004E951A /* IntroScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1247500F2B965282004E951A /* IntroScreen.swift */; };
 		124750122B9652AE004E951A /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124750112B9652AE004E951A /* LockView.swift */; };
 		124750142B965591004E951A /* BudgetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124750132B965591004E951A /* BudgetsView.swift */; };
+		124750162B96720C004E951A /* ChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124750152B96720C004E951A /* ChartModel.swift */; };
+		124750182B969C2E004E951A /* ExpensesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124750172B969C2E004E951A /* ExpensesList.swift */; };
+		1247501C2B96A0E6004E951A /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1247501B2B96A0E6004E951A /* DashboardView.swift */; };
 		12D21C912B9639EF002F44E9 /* MenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D21C902B9639EF002F44E9 /* MenuModel.swift */; };
-		12D21C932B963A49002F44E9 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D21C922B963A49002F44E9 /* DashboardView.swift */; };
 		12D21C952B963A6E002F44E9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D21C942B963A6E002F44E9 /* SettingsView.swift */; };
 		12D21C972B963A81002F44E9 /* TransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D21C962B963A81002F44E9 /* TransactionsView.swift */; };
 		12D21C992B963A8C002F44E9 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D21C982B963A8C002F44E9 /* ProfileView.swift */; };
@@ -96,8 +98,10 @@
 		1247500F2B965282004E951A /* IntroScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroScreen.swift; sourceTree = "<group>"; };
 		124750112B9652AE004E951A /* LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockView.swift; sourceTree = "<group>"; };
 		124750132B965591004E951A /* BudgetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetsView.swift; sourceTree = "<group>"; };
+		124750152B96720C004E951A /* ChartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartModel.swift; sourceTree = "<group>"; };
+		124750172B969C2E004E951A /* ExpensesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesList.swift; sourceTree = "<group>"; };
+		1247501B2B96A0E6004E951A /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		12D21C902B9639EF002F44E9 /* MenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuModel.swift; sourceTree = "<group>"; };
-		12D21C922B963A49002F44E9 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		12D21C942B963A6E002F44E9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		12D21C962B963A81002F44E9 /* TransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsView.swift; sourceTree = "<group>"; };
 		12D21C982B963A8C002F44E9 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -199,6 +203,7 @@
 				12474FF32B9643A7004E951A /* NotificationState.swift */,
 				12474FF92B964470004E951A /* TransactionModel.swift */,
 				12474FFB2B9644AE004E951A /* Category.swift */,
+				124750152B96720C004E951A /* ChartModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -219,6 +224,7 @@
 				1247500D2B964AAA004E951A /* CardView.swift */,
 				1247500F2B965282004E951A /* IntroScreen.swift */,
 				124750112B9652AE004E951A /* LockView.swift */,
+				124750172B969C2E004E951A /* ExpensesList.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -250,11 +256,11 @@
 			isa = PBXGroup;
 			children = (
 				12D21C982B963A8C002F44E9 /* ProfileView.swift */,
-				12D21C922B963A49002F44E9 /* DashboardView.swift */,
 				12D21C962B963A81002F44E9 /* TransactionsView.swift */,
 				12D21C9A2B963A98002F44E9 /* SearchView.swift */,
 				12D21C942B963A6E002F44E9 /* SettingsView.swift */,
 				124750132B965591004E951A /* BudgetsView.swift */,
+				1247501B2B96A0E6004E951A /* DashboardView.swift */,
 			);
 			path = MenuViews;
 			sourceTree = "<group>";
@@ -394,7 +400,6 @@
 				122DBFA42B93D9A3001E130B /* ContentView.swift in Sources */,
 				124750082B964A34004E951A /* EditTransactionView.swift in Sources */,
 				12474FF22B964368004E951A /* ThemeChangeView.swift in Sources */,
-				12D21C932B963A49002F44E9 /* DashboardView.swift in Sources */,
 				124750042B9649ED004E951A /* FilterTransactionView.swift in Sources */,
 				12D21C9F2B963B43002F44E9 /* HomeView.swift in Sources */,
 				12D21CA12B963BCE002F44E9 /* Drawer.swift in Sources */,
@@ -408,6 +413,7 @@
 				1247500E2B964AAA004E951A /* CardView.swift in Sources */,
 				1247500C2B964A7D004E951A /* TransactionCardView.swift in Sources */,
 				124750122B9652AE004E951A /* LockView.swift in Sources */,
+				124750162B96720C004E951A /* ChartModel.swift in Sources */,
 				12474FFC2B9644AE004E951A /* Category.swift in Sources */,
 				12D21C9B2B963A98002F44E9 /* SearchView.swift in Sources */,
 				124750142B965591004E951A /* BudgetsView.swift in Sources */,
@@ -416,6 +422,8 @@
 				12D21C912B9639EF002F44E9 /* MenuModel.swift in Sources */,
 				1247500A2B964A50004E951A /* DateFilterView.swift in Sources */,
 				124750062B964A20004E951A /* AddTransactionView.swift in Sources */,
+				1247501C2B96A0E6004E951A /* DashboardView.swift in Sources */,
+				124750182B969C2E004E951A /* ExpensesList.swift in Sources */,
 				12474FEE2B96420A004E951A /* UIConstants.swift in Sources */,
 				12D21C992B963A8C002F44E9 /* ProfileView.swift in Sources */,
 				124750022B9649AC004E951A /* SwipeAction.swift in Sources */,

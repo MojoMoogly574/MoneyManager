@@ -55,7 +55,7 @@ struct Drawer: View {
                     
                 MenuButton(name: "Settings", image: "gear", selectedMenu: $menuData.selectedMenu,animation: animation)
             }
-            .navigationBarBackButtonHidden(true)//important
+            .navigationBarBackButtonHidden(true)
             .padding(.leading)
             .frame(width: 250, alignment: .leading)
             .padding(.top,30)

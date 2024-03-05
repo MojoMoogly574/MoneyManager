@@ -103,22 +103,7 @@ struct TransactionsView: View {
                                                 .scaleEffect(headerScale(size, proxy: geometryProxy), anchor: .center)
                                         }
                                     Spacer()
-                                    Button {
-                                        addTransaction = true
-                                        HapticManager.notification(type: .success)
-                                    } label: {
-                                        Image(systemName: "plus")
-                                            .font(.title3)
-                                            .fontWeight(.semibold)
-                                            .foregroundStyle(.white)
-                                            .frame(width: 45, height: 45)
-                                            .background(appTint.gradient, in: .circle)
-                                            .contentShape(.circle)
-                                    }
-                                    .sheet(isPresented: $addTransaction) {
-                                        AddTransactionView()
-                                            .presentationDetents([.large])
-                                    }
+                                   
                                 }
                                 .padding(.horizontal, 2)
                                 .padding(.bottom, userName.isEmpty ? 10 : 5)
@@ -142,6 +127,25 @@ struct TransactionsView: View {
                     .disabled(showFilterView)
                     .navigationDestination(item: $selectedTransaction) { transaction in
                         EditTransactionView()
+                    }
+                    VStack{
+                        Spacer()
+                        Button {
+                            addTransaction = true
+                            HapticManager.notification(type: .success)
+                        } label: {
+                            Image(systemName: "plus")
+                                .font(.title3)
+                                .fontWeight(.semibold)
+                                .foregroundStyle(.white)
+                                .frame(width: 45, height: 45)
+                                .background(appTint.gradient, in: .circle)
+                                .contentShape(.circle)
+                        }
+                        .sheet(isPresented: $addTransaction) {
+                            AddTransactionView()
+                                .presentationDetents([.large])
+                        }
                     }
                 }
             }

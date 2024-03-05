@@ -43,10 +43,10 @@ struct SettingsView: View {
                 Section("User Name") {
                     TextField("UserName", text: $userName)
                 }
-                Section("App Lock") {
-                    Toggle("Enable App Lock", isOn: $isAppLockEnabled)
+                Section("Security") {
+                    Toggle("Enable Biometric Access", isOn: $isAppLockEnabled)
                     if isAppLockEnabled {
-                        Toggle("Lock When App Goes Background", isOn: $lockWhenAppGoesBackground)
+                        Toggle("Lock When Phone Sleeps", isOn: $lockWhenAppGoesBackground)
                     }
                 }
                 Section("Accent Color") {
