@@ -91,7 +91,7 @@ struct AddTransactionView: View {
                     }
                     .buttonStyle(.bordered)
                     .fontWeight(.bold)
-                    .foregroundStyle(.colorRed)
+                    .foregroundStyle(appTint)
                     .tint(.gray)
                 }
 

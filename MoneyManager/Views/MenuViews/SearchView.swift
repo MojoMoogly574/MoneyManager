@@ -9,54 +9,69 @@ import SwiftUI
 import Combine
 
 struct SearchView: View {
+  
     /// View Properties
     @State private var searchText: String = ""
+    @StateObject var menuData = MenuViewModel()
     @State private var filterText: String = ""
     @State private var selectedCategory: Category? = nil
     @State private var selectedTransaction: Transaction?
     let searchPublisher = PassthroughSubject<String, Never>()
     @Namespace private var animation
     var body: some View {
-        NavigationStack {
-            ScrollView(.vertical) {
-                LazyVStack(spacing: 12, pinnedViews: [.sectionHeaders]) {
-                    Section {
-                        FilterTransactionsView(category: selectedCategory, searchText: filterText) { transactions in
-                            ForEach(transactions) { transaction in
-                                TransactionCardView(transaction: transaction, showsCategory: true)
-                                    .onTapGesture {
-                                        selectedTransaction = transaction
+        
+            ZStack{
+            NavigationStack {
+                    ScrollView(.vertical) {
+                        LazyVStack(spacing: 12, pinnedViews: [.sectionHeaders]) {
+                            Section {
+                                FilterTransactionsView(category: selectedCategory, searchText: filterText) { transactions in
+                                    ForEach(transactions) { transaction in
+                                        TransactionCardView(transaction: transaction, showsCategory: true)
+                                            .onTapGesture {
+                                                selectedTransaction = transaction
+                                            }
                                     }
+                                }
+                            } header: {
+                                
+                                    }
+                                }
+                                SegmentedPicker()
                             }
                         }
-                    } header: {
-                        SegmentedPicker()
+                        .padding([.horizontal, .bottom], 15)
+                    
+                    .navigationDestination(item: $selectedTransaction) { transaction in
+                        TransactionsView()
                     }
-                }
-                .padding([.horizontal, .bottom], 15)
-            }
-            .navigationDestination(item: $selectedTransaction) { transaction in
-                TransactionsView()
-            }
-            .overlay(content: {
-                ContentUnavailableView("Search Transactions", systemImage: "magnifyingglass")
-                    .opacity(filterText.isEmpty ? 1 : 0)
-            })
-            .onChange(of: searchText, { oldValue, newValue in
-                if newValue.isEmpty {
-                    filterText = ""
-                }
-                searchPublisher.send(newValue)
-            })
-            .onReceive(searchPublisher.debounce(for: .seconds(0.3), scheduler: DispatchQueue.main), perform: { text in
-                filterText = text
-            })
-            .searchable(text: $searchText)
-            .navigationTitle("Search")
-            .background(.gray.opacity(0.15))
+                    .overlay(content: {
+                        ContentUnavailableView("Search Transactions", systemImage: "magnifyingglass")
+                            .opacity(filterText.isEmpty ? 1 : 0)
+                    })
+                    .onChange(of: searchText, { oldValue, newValue in
+                        if newValue.isEmpty {
+                            filterText = ""
+                        }
+                        searchPublisher.send(newValue)
+                    })
+                    .onReceive(searchPublisher.debounce(for: .seconds(0.3), scheduler: DispatchQueue.main), perform: { text in
+                        filterText = text
+                    })
+                    .searchable(text: $searchText)
+                    .navigationTitle("Search")
+                    .navigationBarTitleDisplayMode(.inline)
+                    .background(.gray.opacity(0.15))
+        
+            DrawerCloseButton(animation: animation)
+                .font(.title3)
+                .fontWeight(.semibold)
+                .frame(width: 45, height: 45)
+                .background(appTint.gradient, in: .circle)
+                .contentShape(.circle)
+                .padding(.horizontal, 4)
         }
     }
-    
     @ViewBuilder
     func SegmentedPicker() -> some View {
         HStack(spacing: 0) {
@@ -75,7 +90,6 @@ struct SearchView: View {
                 .onTapGesture {
                     selectedCategory = nil
                 }
-            
             ForEach(Category.allCases, id: \.rawValue) { category in
                 Text(category.rawValue)
                     .frame(maxWidth: .infinity)

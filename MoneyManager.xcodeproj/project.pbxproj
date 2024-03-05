@@ -38,6 +38,8 @@
 		124750162B96720C004E951A /* ChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124750152B96720C004E951A /* ChartModel.swift */; };
 		124750182B969C2E004E951A /* ExpensesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124750172B969C2E004E951A /* ExpensesList.swift */; };
 		1247501C2B96A0E6004E951A /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1247501B2B96A0E6004E951A /* DashboardView.swift */; };
+		12C049102B9789D6007CB8BA /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12C0490F2B9789D6007CB8BA /* SwiftUI.framework */; };
+		12C049122B9789E2007CB8BA /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12C049112B9789E2007CB8BA /* WidgetKit.framework */; };
 		12D21C912B9639EF002F44E9 /* MenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D21C902B9639EF002F44E9 /* MenuModel.swift */; };
 		12D21C952B963A6E002F44E9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D21C942B963A6E002F44E9 /* SettingsView.swift */; };
 		12D21C972B963A81002F44E9 /* TransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D21C962B963A81002F44E9 /* TransactionsView.swift */; };
@@ -101,6 +103,8 @@
 		124750152B96720C004E951A /* ChartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartModel.swift; sourceTree = "<group>"; };
 		124750172B969C2E004E951A /* ExpensesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesList.swift; sourceTree = "<group>"; };
 		1247501B2B96A0E6004E951A /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		12C0490F2B9789D6007CB8BA /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.2.sdk/System/Library/Frameworks/SwiftUI.framework; sourceTree = DEVELOPER_DIR; };
+		12C049112B9789E2007CB8BA /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.2.sdk/System/Library/Frameworks/WidgetKit.framework; sourceTree = DEVELOPER_DIR; };
 		12D21C902B9639EF002F44E9 /* MenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuModel.swift; sourceTree = "<group>"; };
 		12D21C942B963A6E002F44E9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		12D21C962B963A81002F44E9 /* TransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsView.swift; sourceTree = "<group>"; };
@@ -116,6 +120,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12C049102B9789D6007CB8BA /* SwiftUI.framework in Frameworks */,
+				12C049122B9789E2007CB8BA /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +150,7 @@
 				122DBFB22B93D9A4001E130B /* MoneyManagerTests */,
 				122DBFBC2B93D9A4001E130B /* MoneyManagerUITests */,
 				122DBF9F2B93D9A3001E130B /* Products */,
+				12C0490E2B9789D5007CB8BA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -241,6 +248,15 @@
 				124750012B9649AC004E951A /* SwipeAction.swift */,
 			);
 			path = Support;
+			sourceTree = "<group>";
+		};
+		12C0490E2B9789D5007CB8BA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				12C049112B9789E2007CB8BA /* WidgetKit.framework */,
+				12C0490F2B9789D6007CB8BA /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		12D21C8E2B9635C9002F44E9 /* SideMenu */ = {
@@ -592,6 +608,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = MoneyManager;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -630,6 +648,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = MoneyManager;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
