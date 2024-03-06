@@ -279,5 +279,5 @@ struct LockView<Content: View>: View {
     }
 
 #Preview {
-    HomeView()
+    TabBarView()
 }

@@ -16,6 +16,7 @@ struct TransactionCardView: View {
         SwipeAction(cornerRadius: 10, direction: .trailing) {
             HStack(spacing: 12) {
                 Text("\(String(transaction.title.prefix(1)))")
+                    .fontDesign(.serif)
                     .font(.title)
                     .fontWeight(.semibold)
                     .foregroundStyle(.white)
@@ -24,11 +25,15 @@ struct TransactionCardView: View {
                 
                 VStack(alignment: .leading, spacing: 4, content: {
                     Text(transaction.title)
-                        .foregroundStyle(Color.primary)
+                        .foregroundStyle(.primary)
+                        .fontDesign(.serif)
+                        .fontWeight(.bold)
+                        .font(.title2)
                     
                     if !transaction.remarks.isEmpty {
                         Text(transaction.remarks)
-                            .font(.caption)
+                            .fontDesign(.serif)
+                            .font(.title3)
                             .foregroundStyle(Color.primary.secondary)
                     }
                     
@@ -51,9 +56,12 @@ struct TransactionCardView: View {
                 Text(currencyString(transaction.amount, allowedDigits: 2))
                     .fontWeight(.semibold)
             }
-            .padding(.horizontal, 15)
-            .padding(.vertical, 10)
-            .background(.background, in: .rect(cornerRadius: 10))
+       //     clipShape(RoundedRectangle(cornerRadius: 10.0))
+            .padding(10)
+            .background(.themeBG, in: .rect(cornerRadius: 10))
+            .padding(.horizontal, 5)
+      //      .padding(.vertical, 10)
+           
         } actions: {
             Action(tint: .red, icon: "trash") {
                 context.delete(transaction)

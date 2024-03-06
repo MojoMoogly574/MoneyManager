@@ -150,6 +150,7 @@ struct EditTransactionView: View {
                 }
             })
         }
+        .background(.gray .opacity(0.15))
         .onAppear( perform:{
             if let editTransaction {
                 /// Load All Existing Data from the Transaction
@@ -311,5 +312,5 @@ struct EditTransactionView: View {
 }
 
 #Preview {
-    HomeView()
+    TabBarView()
 }

@@ -19,9 +19,11 @@ class Transaction: Codable {
     var tintColor: String
     var enableReminder: Bool = false
     var reminderID: String = ""
-    var budget: Budget.RawValue = Budget.Needs.rawValue
-    @Attribute(.externalStorage)
     var receipt: Data?
+    
+    @Relationship(inverse: \Budget.transactions)
+    var genres: [Budget]?
+    
     
     init(
         title: String,
@@ -29,8 +31,7 @@ class Transaction: Codable {
         amount: Double,
         dateAdded: Date,
         category: Category,
-        tintColor: TintColor,
-        budget: Budget = .Savings
+        tintColor: TintColor
     ) {
         self.title = title
         self.remarks = remarks
@@ -38,7 +39,7 @@ class Transaction: Codable {
         self.dateAdded = dateAdded
         self.category = category.rawValue
         self.tintColor = tintColor.color
-        self.budget = budget.rawValue
+       
     }
     
     /// Conforming Codable Protocol
@@ -86,34 +87,5 @@ class Transaction: Codable {
     var rawCategory: Category? {
         return Category.allCases.first(where: { category == $0.rawValue })
     }
-    var icon: Image {
-        switch Budget(rawValue: budget)!  {
-        case .Needs:
-            Image(systemName: "house.circle.fill")
-        case .Wants:
-            Image(systemName: "popcorn.circle.fill")
-        case .Savings:
-            Image(systemName: "building.columns.circle.fill")
-        }
-    }
 }
   
-enum Budget: Int, Codable, Identifiable, CaseIterable {
-        case  Needs, Wants, Savings
-        var id: Self {
-            self
-        }
-        var descr: LocalizedStringResource {
-            switch self {
-            
-            case .Needs:
-                "Need"
-            case .Wants:
-                "Want"
-            case .Savings:
-                "Saving"
-
-            }
-        }
-    }
-

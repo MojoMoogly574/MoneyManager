@@ -26,6 +26,7 @@ struct SettingsView: View {
     @AppStorage("notificationAccess") private var isNotificationAccessGiven: NotificationState = .notDetermined
     @Environment(\.openURL) private var openURL
     @Environment(\.scenePhase) private var scenePhase
+ 
     /// Import & Export Properties
     @State private var presentFilePicker: Bool = false
     @State private var presentShareSheet: Bool = false
@@ -34,8 +35,9 @@ struct SettingsView: View {
     /// Alert Properties
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
-    
-    
+    /// For Animation
+    @Namespace private var animation
+    @StateObject var menuData = MenuViewModel()
     
     var body: some View {
         NavigationStack{
@@ -115,16 +117,16 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle("App Settings")
-            .navigationBarTitleDisplayMode(.inline)
-        }
-            .padding(.top, 5)
-            /// For Exporting Expneses as JSON File
+                              .navigationBarTitleDisplayMode(.inline)
+            }
+      
+        /// For Exporting Expneses as JSON File
             .sheet(isPresented: $presentShareSheet) {
                 deleteTempFile()
             } content: {
                 CustomShareSheet(url: $shareURL)
             }
-            /// File Importer (For Selecting JSON File From Files App)
+        /// File Importer (For Selecting JSON File From Files App)
             .fileImporter(isPresented: $presentFilePicker, allowedContentTypes: [.json]) { result in
                 switch result {
                 case .success(let url):
@@ -139,13 +141,13 @@ struct SettingsView: View {
                     showAlert.toggle()
                 }
             }
-            /// Alert View
+        /// Alert View
             .alert(alertMessage, isPresented: $showAlert) {  }
-            /// Loading View (Displaying when any Heavy task is happening in the background)
+        /// Loading View (Displaying when any Heavy task is happening in the background)
             .overlay {
                 LoadingView(show: $isLoading)
             }
-            /// Theme Picker
+        /// Theme Picker
             .preferredColorScheme(userTheme.colorScheme)
             .sheet(isPresented: $changeTheme, content: {
                 ThemeChangeView(scheme: scheme)
@@ -162,8 +164,7 @@ struct SettingsView: View {
                     removeAllPendingNotifications()
                 }
             }
-        } 
-    
+    }
     /// Importing JSON File and Adding to SwiftData
     func importJSON(_ url: URL) {
         isLoading = true
@@ -189,7 +190,6 @@ struct SettingsView: View {
             }
         }
     }
-    
     /// Exporting SwiftData to JSON File
     func exportTransactions() {
         isLoading = true
@@ -197,7 +197,7 @@ struct SettingsView: View {
             try? await Task.sleep(for: .seconds(1))
             /// Step 1:
             /// Fetching All Transactions from SwiftData
-            if let transactions = try? context.fetch(.init(sortBy: [
+            if let transactions = try? await context.fetch(.init(sortBy: [
                 SortDescriptor(\Transaction.dateAdded, order: .reverse)
             ])) {
                 /// Step 2:
@@ -250,5 +250,5 @@ struct SettingsView: View {
 }
 
 #Preview {
-    SettingsView()
+    TabBarView()
 }

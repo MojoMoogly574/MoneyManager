@@ -81,7 +81,7 @@ struct Drawer: View {
 
 struct Drawer_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView().navigationBarBackButtonHidden(true)
+        TabBarView().navigationBarBackButtonHidden(true)
     }
 }
 

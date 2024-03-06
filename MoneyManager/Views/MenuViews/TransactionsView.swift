@@ -30,7 +30,7 @@ struct TransactionsView: View {
             let size = $0.size
             NavigationStack{
                 ZStack{
-                
+                    
                     ScrollView(.vertical) {
                         LazyVStack(spacing: 10, pinnedViews: [.sectionHeaders]) {
                             //MARK: BODY
@@ -63,15 +63,15 @@ struct TransactionsView: View {
                                         investments: total(transactions, category: .investment)
                                     )
                                 }
-                                    ///  CATEGORY SEGMENTED PICKER
-                                    Picker("", selection: $selectedCategory) {
-                                        ForEach(Category.allCases, id: \.rawValue) { category in
-                                            Text("\(category.rawValue)")
-                                                .tag(category)
-                                        }
+                                ///  CATEGORY SEGMENTED PICKER
+                                Picker("", selection: $selectedCategory) {
+                                    ForEach(Category.allCases, id: \.rawValue) { category in
+                                        Text("\(category.rawValue)")
+                                            .tag(category)
                                     }
-                                    .pickerStyle(.segmented)
-                                    .padding(.horizontal, 5)
+                                }
+                                .pickerStyle(.segmented)
+                                .padding(.horizontal, 5)
                                 Divider()
                                     .background(.primary)
                                 ///FILTER TRANSACTION VIEW
@@ -88,14 +88,6 @@ struct TransactionsView: View {
                             } header: {
                                 //MARK:  HEADER VIEW
                                 HStack{
-                                    DrawerCloseButton(animation: animation)
-                                        .font(.title3)
-                                        .fontWeight(.semibold)
-                                        .frame(width: 45, height: 45)
-                                        .background(appTint.gradient, in: .circle)
-                                        .contentShape(.circle)
-                                        .padding(.horizontal, -10)
-                                    
                                     VStack(alignment: .trailing, content: {
                                         Text(" Welcome!")
                                             .font(.title.bold())
@@ -109,7 +101,23 @@ struct TransactionsView: View {
                                             content
                                                 .scaleEffect(headerScale(size, proxy: geometryProxy), anchor: .center)
                                         }
-                                    Spacer(minLength: 45)
+                                    Button {
+                                        addTransaction = true
+                                        HapticManager.notification(type: .success)
+                                    } label: {
+                                        Image(systemName: "plus")
+                                            .font(.title3)
+                                            .fontWeight(.semibold)
+                                            .foregroundStyle(.white)
+                                            .frame(width: 45, height: 45)
+                                            .background(appTint.gradient, in: .circle)
+                                            .contentShape(.circle)
+                                            .padding(.bottom, 10)
+                                    }.padding(.horizontal)
+                                        .sheet(isPresented: $addTransaction) {
+                                            AddTransactionView()
+                                                .presentationDetents([.large])
+                                        }
                                 }
                                 .padding(.horizontal, 2)
                                 .padding(.bottom, userName.isEmpty ? 10 : 5)
@@ -135,27 +143,8 @@ struct TransactionsView: View {
                         EditTransactionView(editTransaction: transaction)///pass transaction to editview
                     }
                     //ADD TRANSACTION BUTTON 
-                    VStack{
-                        Spacer()
-                        Button {
-                            addTransaction = true
-                            HapticManager.notification(type: .success)
-                        } label: {
-                            Image(systemName: "plus")
-                                .font(.title3)
-                                .fontWeight(.semibold)
-                                .foregroundStyle(.white)
-                                .frame(width: 45, height: 45)
-                                .background(appTint.gradient, in: .circle)
-                                .contentShape(.circle)
-                        }
-                        .sheet(isPresented: $addTransaction) {
-                            AddTransactionView()
-                                .presentationDetents([.large])
-                        }
-                    }
+                    
                 }
-               
             }
             //MARK: SHOW DATE FILTER VIEW
             .overlay {

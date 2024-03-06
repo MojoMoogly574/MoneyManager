@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 struct SearchView: View {
-  
+    
     /// View Properties
     @State private var searchText: String = ""
     @StateObject var menuData = MenuViewModel()
@@ -20,58 +20,46 @@ struct SearchView: View {
     @Namespace private var animation
     var body: some View {
         
-            ZStack{
-            NavigationStack {
-                    ScrollView(.vertical) {
-                        LazyVStack(spacing: 12, pinnedViews: [.sectionHeaders]) {
-                            Section {
-                                FilterTransactionsView(category: selectedCategory, searchText: filterText) { transactions in
-                                    ForEach(transactions) { transaction in
-                                        TransactionCardView(transaction: transaction, showsCategory: true)
-                                            .onTapGesture {
-                                                selectedTransaction = transaction
-                                            }
-                                    }
+       NavigationStack {
+                ScrollView(.vertical){
+                    LazyVStack(spacing: 12, pinnedViews: [.sectionHeaders]) {
+                        Section {
+                            FilterTransactionsView(category: selectedCategory, searchText: filterText) { transactions in
+                                ForEach(transactions) { transaction in
+                                    TransactionCardView(transaction: transaction, showsCategory: true)
+                                        .onTapGesture {
+                                            selectedTransaction = transaction
+                                        }
                                 }
-                            } header: {
-                                
-                                    }
-                                }
-                                SegmentedPicker()
                             }
+                        } header: {
+                                  SegmentedPicker()
+                                .searchable(text: $searchText)
                         }
-                        .padding([.horizontal, .bottom], 15)
-                    
-                    .navigationDestination(item: $selectedTransaction) { transaction in
-                        TransactionsView()
                     }
-                    .overlay(content: {
-                        ContentUnavailableView("Search Transactions", systemImage: "magnifyingglass")
-                            .opacity(filterText.isEmpty ? 1 : 0)
-                    })
-                    .onChange(of: searchText, { oldValue, newValue in
-                        if newValue.isEmpty {
-                            filterText = ""
-                        }
-                        searchPublisher.send(newValue)
-                    })
-                    .onReceive(searchPublisher.debounce(for: .seconds(0.3), scheduler: DispatchQueue.main), perform: { text in
-                        filterText = text
-                    })
-                    .searchable(text: $searchText)
-                    .navigationTitle("Search")
-                    .navigationBarTitleDisplayMode(.inline)
-                    .background(.gray.opacity(0.15))
-        
-            DrawerCloseButton(animation: animation)
-                .font(.title3)
-                .fontWeight(.semibold)
-                .frame(width: 45, height: 45)
-                .background(appTint.gradient, in: .circle)
-                .contentShape(.circle)
-                .padding(.horizontal, 4)
+                   
+                }
+                .navigationTitle("Search Transactions")
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationDestination(item: $selectedTransaction) { transaction in
+                    TransactionsView()
+                }
+                .overlay(content: {
+                    ContentUnavailableView("Search Transactions", systemImage: "magnifyingglass")
+                        .opacity(filterText.isEmpty ? 1 : 0)
+                })
+                .onChange(of: searchText, { oldValue, newValue in
+                    if newValue.isEmpty {
+                        filterText = ""
+                    }
+                    searchPublisher.send(newValue)
+                })
+                .onReceive(searchPublisher.debounce(for: .seconds(0.3), scheduler: DispatchQueue.main), perform: { text in
+                    filterText = text
+                })
+            }.padding([.horizontal, .bottom], 15)
+               
         }
-    }
     @ViewBuilder
     func SegmentedPicker() -> some View {
         HStack(spacing: 0) {
@@ -111,6 +99,7 @@ struct SearchView: View {
         .background(appTint.opacity(0.25), in: .capsule)
         .animation(.snappy, value: selectedCategory)
         .padding(.vertical, 7)
+        .padding(.horizontal, 2)
         .background {
             Rectangle()
                 .fill(.ultraThinMaterial)

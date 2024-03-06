@@ -50,8 +50,8 @@ struct DashboardView: View {
                 }
                 .padding(15)
             }
-            .navigationTitle("Graphs")
-            .background(.gray.opacity(0.15))
+            .navigationTitle("My Dashboards")
+            .navigationBarTitleDisplayMode(.inline)
             .overlay {
                 if chartGroups.isEmpty && !isLoading {
                     ContentUnavailableView("No Transactions Found", systemImage: "xmark.seal")
@@ -107,7 +107,7 @@ struct DashboardView: View {
             }
         }
         /// Foreground Colors
-        .chartForegroundStyleScale(range: [Color.green.gradient, Color.red.gradient])
+        .chartForegroundStyleScale(range: [Color.green.gradient, Color.red.gradient, Color.blue.gradient, Color.mint.gradient])
     }
     
     func createChartGroup() {
